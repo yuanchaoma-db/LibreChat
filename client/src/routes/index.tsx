@@ -11,13 +11,6 @@ import {
 } from '~/components/Auth';
 import { AuthContextProvider } from '~/hooks/AuthContext';
 
-const AuthLayout = () => (
-  <AuthContextProvider>
-    <Outlet />
-    <ApiErrorWatcher />
-  </AuthContextProvider>
-);
-
 export const router = createBrowserRouter([
   {
     path: 'register',
@@ -32,29 +25,24 @@ export const router = createBrowserRouter([
     element: <ResetPassword />,
   },
   {
-    element: <AuthLayout />,
+    path: 'login',
+    element: <Login />,
+  },
+  {
+    path: '/',
+    element: <Root />,
     children: [
       {
-        path: 'login',
-        element: <Login />,
+        index: true,
+        element: <Navigate to="/chat/new" replace={true} />,
       },
       {
-        path: '/',
-        element: <Root />,
-        children: [
-          {
-            index: true,
-            element: <Navigate to="/chat/new" replace={true} />,
-          },
-          {
-            path: 'chat/:conversationId?',
-            element: <Chat />,
-          },
-          {
-            path: 'search/:query?',
-            element: <Search />,
-          },
-        ],
+        path: 'chat/:conversationId?',
+        element: <Chat />,
+      },
+      {
+        path: 'search/:query?',
+        element: <Search />,
       },
     ],
   },

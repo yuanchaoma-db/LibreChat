@@ -19,7 +19,7 @@ const {
 const router = express.Router();
 
 //Local
-router.post('/logout', requireJwtAuth, logoutController);
+router.post('/logout', logoutController);
 router.post('/login', loginLimiter, checkBan, requireLocalAuth, loginController);
 router.post('/refresh', refreshController);
 router.post('/register', registerLimiter, checkBan, validateRegistration, registrationController);

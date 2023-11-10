@@ -4,14 +4,14 @@ const { getPresets, savePreset, deletePresets } = require('../../models');
 const crypto = require('crypto');
 const requireJwtAuth = require('../middleware/requireJwtAuth');
 
-router.get('/', requireJwtAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   const presets = (await getPresets(req.user.id)).map((preset) => {
     return preset;
   });
   res.status(200).send(presets);
 });
 
-router.post('/', requireJwtAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   const update = req.body || {};
 
   update.presetId = update?.presetId || crypto.randomUUID();
@@ -29,7 +29,7 @@ router.post('/', requireJwtAuth, async (req, res) => {
   }
 });
 
-router.post('/delete', requireJwtAuth, async (req, res) => {
+router.post('/delete', async (req, res) => {
   let filter = {};
   const { presetId } = req.body.arg || {};
 

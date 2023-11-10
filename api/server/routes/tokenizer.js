@@ -3,7 +3,7 @@ const router = express.Router();
 const { countTokens } = require('../utils');
 const requireJwtAuth = require('../middleware/requireJwtAuth');
 
-router.post('/', requireJwtAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { arg } = req.body;
     const count = await countTokens(arg?.text ?? arg);

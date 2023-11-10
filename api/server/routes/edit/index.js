@@ -15,7 +15,6 @@ const { isEnabled } = require('../../utils');
 
 const { LIMIT_CONCURRENT_MESSAGES, LIMIT_MESSAGE_IP, LIMIT_MESSAGE_USER } = process.env ?? {};
 
-router.use(requireJwtAuth);
 router.use(checkBan);
 router.use(uaParser);
 

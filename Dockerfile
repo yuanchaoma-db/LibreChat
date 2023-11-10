@@ -15,7 +15,7 @@ RUN apk --no-cache add curl && \
 
 # React client build
 ENV NODE_OPTIONS="--max-old-space-size=2048"
-RUN npm run frontend
+RUN npm run frontend  --loglevel verbose
 
 # Node API setup
 EXPOSE 3080

@@ -10,7 +10,6 @@ const {
 const { countTokens } = require('../utils');
 const { requireJwtAuth, validateMessageReq } = require('../middleware/');
 
-router.use(requireJwtAuth);
 
 router.get('/:conversationId', validateMessageReq, async (req, res) => {
   const { conversationId } = req.params;

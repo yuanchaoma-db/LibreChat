@@ -4,16 +4,15 @@ const { getConvo, saveConvo } = require('../../models');
 const { getConvosByPage, deleteConvos } = require('../../models/Conversation');
 const requireJwtAuth = require('../middleware/requireJwtAuth');
 
-router.use(requireJwtAuth);
-
+const USER_ID = 1;
 router.get('/', async (req, res) => {
   const pageNumber = req.query.pageNumber || 1;
-  res.status(200).send(await getConvosByPage(req.user.id, pageNumber));
+  res.status(200).send(await getConvosByPage(USER_ID, pageNumber));
 });
 
 router.get('/:conversationId', async (req, res) => {
   const { conversationId } = req.params;
-  const convo = await getConvo(req.user.id, conversationId);
+  const convo = await getConvo(USER_ID, conversationId);
 
   if (convo) {
     res.status(200).send(convo);
@@ -37,7 +36,7 @@ router.post('/clear', async (req, res) => {
   }
 
   try {
-    const dbResponse = await deleteConvos(req.user.id, filter);
+    const dbResponse = await deleteConvos(USER_ID, filter);
     res.status(201).send(dbResponse);
   } catch (error) {
     console.error(error);
@@ -49,7 +48,7 @@ router.post('/update', async (req, res) => {
   const update = req.body.arg;
 
   try {
-    const dbResponse = await saveConvo(req.user.id, update);
+    const dbResponse = await saveConvo(USER_ID, update);
     res.status(201).send(dbResponse);
   } catch (error) {
     console.error(error);

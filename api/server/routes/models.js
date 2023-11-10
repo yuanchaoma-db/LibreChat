@@ -3,6 +3,6 @@ const router = express.Router();
 const controller = require('../controllers/ModelController');
 const { requireJwtAuth } = require('../middleware/');
 
-router.get('/', requireJwtAuth, controller);
+router.get('/', controller);
 
 module.exports = router;

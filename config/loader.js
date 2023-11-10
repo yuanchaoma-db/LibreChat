@@ -62,7 +62,6 @@ class Env {
   validate() {
     const requiredKeys = [
       'NODE_ENV',
-      'JWT_SECRET',
       'DOMAIN_CLIENT',
       'DOMAIN_SERVER',
       'CREDS_KEY',
@@ -86,11 +85,6 @@ class Env {
         Please add them to your env file or run 'npm run install'
       `;
       throw new Error(message);
-    }
-
-    // Check JWT secret for default
-    if (process.env.JWT_SECRET === 'secret') {
-      console.warn('Warning: JWT_SECRET is set to default value');
     }
   }
 

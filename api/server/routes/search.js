@@ -15,8 +15,6 @@ const cache = isEnabled(process.env.USE_REDIS)
   ? new Keyv({ store: keyvRedis })
   : new Keyv({ namespace: 'search', ttl: expiration });
 
-router.use(requireJwtAuth);
-
 router.get('/sync', async function (req, res) {
   await Message.syncWithMeili();
   await Conversation.syncWithMeili();
