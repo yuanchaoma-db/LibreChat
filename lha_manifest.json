@@ -1,0 +1,313 @@
+{
+    "manifest": {
+      "version": "1",
+      "name": "{{app_name}}",
+      "description": "Dash Demo",
+      "registry": {
+        "url": "{{registry_url}}",
+        "access_key": "{{registry_key}}",
+        "access_secret": "{{registry_secret}}"
+      },
+      "ingress": {
+          "endpoints": [
+            {
+              "port_name": "app-http",
+              "visibility": "EXTERNAL"
+            }
+          ]
+        },
+      "services": [
+        {
+          "name": "librechat",
+          "template": {
+            "workload_type": "CPU",
+            "containers": [
+              {
+                "name": "librechat",
+                "image": "{{image_url_1}}",
+                "ports": [
+                  {
+                    "name": "app-http",
+                    "container_port": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
+                "env": [
+                    {
+                      "name": "APP_TITLE",
+                      "value": "LibreChat"
+                    },
+                    {
+                      "name": "HOST",
+                      "value": "localhost"
+                    },
+                    {
+                      "name": "PORT",
+                      "value": "8080"
+                    },
+                    {
+                      "name": "MONGO_URI",
+                      "value": "mongodb://127.0.0.1:27017/LibreChat"
+                    },
+                    {
+                      "name": "OPENAI_API_KEY",
+                      "value": "user_provided"
+                    },
+                    {
+                      "name": "CREDS_KEY",
+                      "value": "f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0"
+                    },
+                    {
+                      "name": "CREDS_IV",
+                      "value": "e2341419ec3dd3d19b13a1a87fafcbfb"
+                    },
+                    {
+                      "name": "SD_WEBUI_URL",
+                      "value": "http://host.docker.internal:8082"
+                    },
+                    {
+                      "name": "SEARCH",
+                      "value": "true"
+                    },
+                    {
+                      "name": "MEILI_NO_ANALYTICS",
+                      "value": "true"
+                    },
+                    {
+                      "name": "MEILI_HOST",
+                      "value": "http://0.0.0.0:8081"
+                    },
+                    {
+                      "name": "MEILI_HTTP_ADDR",
+                      "value": "0.0.0.0:8081"
+                    },
+                    {
+                      "name": "MEILI_MASTER_KEY",
+                      "value": "DrhYf7zENyR6AlUCKmnz0eYASOQdl6zxH7s7MKFSfFCt"
+                    },
+                    {
+                      "name": "JWT_SECRET",
+                      "value": "16f8c0ef4a5d391b26034086c628469d3f9f497f08163ab9b40137092f2909ef"
+                    },
+                    {
+                      "name": "JWT_REFRESH_SECRET",
+                      "value": "eaa5191f2914e30b9387fd84e254e4ba6fc51b4654968a9b0803b456a54b8418"
+                    },
+                    {
+                      "name": "SESSION_EXPIRY",
+                      "value": "750000"
+                    },
+                    {
+                      "name": "REFRESH_TOKEN_EXPIRY",
+                      "value": "604800000"
+                    },
+                    {
+                      "name": "DOMAIN_CLIENT",
+                      "value": "http://localhost:8080"
+                    },
+                    {
+                      "name": "DOMAIN_SERVER",
+                      "value": "http://localhost:8080"
+                    },
+                    {
+                      "name": "EMAIL_FROM",
+                      "value": "yuanchao.ma@databricks.com"
+                    }
+                ]                
+              },
+              {
+                "name": "mongo",
+                "image": "{{image_url_2}}",
+                "ports": [
+                  {
+                    "name": "mango-http",
+                    "container_port": 27017,
+                    "protocol": "TCP"
+                  }
+                ],
+                "env": [
+                    {
+                      "name": "APP_TITLE",
+                      "value": "LibreChat"
+                    },
+                    {
+                      "name": "HOST",
+                      "value": "localhost"
+                    },
+                    {
+                      "name": "PORT",
+                      "value": "8080"
+                    },
+                    {
+                      "name": "MONGO_URI",
+                      "value": "mongodb://127.0.0.1:27017/LibreChat"
+                    },
+                    {
+                      "name": "OPENAI_API_KEY",
+                      "value": "user_provided"
+                    },
+                    {
+                      "name": "CREDS_KEY",
+                      "value": "f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0"
+                    },
+                    {
+                      "name": "CREDS_IV",
+                      "value": "e2341419ec3dd3d19b13a1a87fafcbfb"
+                    },
+                    {
+                      "name": "SD_WEBUI_URL",
+                      "value": "http://host.docker.internal:8082"
+                    },
+                    {
+                      "name": "SEARCH",
+                      "value": "true"
+                    },
+                    {
+                      "name": "MEILI_NO_ANALYTICS",
+                      "value": "true"
+                    },
+                    {
+                      "name": "MEILI_HOST",
+                      "value": "http://0.0.0.0:8081"
+                    },
+                    {
+                      "name": "MEILI_HTTP_ADDR",
+                      "value": "0.0.0.0:8081"
+                    },
+                    {
+                      "name": "MEILI_MASTER_KEY",
+                      "value": "DrhYf7zENyR6AlUCKmnz0eYASOQdl6zxH7s7MKFSfFCt"
+                    },
+                    {
+                      "name": "JWT_SECRET",
+                      "value": "16f8c0ef4a5d391b26034086c628469d3f9f497f08163ab9b40137092f2909ef"
+                    },
+                    {
+                      "name": "JWT_REFRESH_SECRET",
+                      "value": "eaa5191f2914e30b9387fd84e254e4ba6fc51b4654968a9b0803b456a54b8418"
+                    },
+                    {
+                      "name": "SESSION_EXPIRY",
+                      "value": "750000"
+                    },
+                    {
+                      "name": "REFRESH_TOKEN_EXPIRY",
+                      "value": "604800000"
+                    },
+                    {
+                      "name": "DOMAIN_CLIENT",
+                      "value": "http://localhost:8080"
+                    },
+                    {
+                      "name": "DOMAIN_SERVER",
+                      "value": "http://localhost:8080"
+                    },
+                    {
+                      "name": "EMAIL_FROM",
+                      "value": "yuanchao.ma@databricks.com"
+                    }
+                ]                
+              },
+              {
+                "name": "meili",
+                "image": "{{image_url_3}}",
+                "ports": [
+                  {
+                    "name": "meili-http",
+                    "container_port": 8081,
+                    "protocol": "TCP"
+                  }
+                ],
+                "env": [
+                    {
+                      "name": "APP_TITLE",
+                      "value": "LibreChat"
+                    },
+                    {
+                      "name": "HOST",
+                      "value": "localhost"
+                    },
+                    {
+                      "name": "PORT",
+                      "value": "8080"
+                    },
+                    {
+                      "name": "MONGO_URI",
+                      "value": "mongodb://127.0.0.1:27017/LibreChat"
+                    },
+                    {
+                      "name": "OPENAI_API_KEY",
+                      "value": "user_provided"
+                    },
+                    {
+                      "name": "CREDS_KEY",
+                      "value": "f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0"
+                    },
+                    {
+                      "name": "CREDS_IV",
+                      "value": "e2341419ec3dd3d19b13a1a87fafcbfb"
+                    },
+                    {
+                      "name": "SD_WEBUI_URL",
+                      "value": "http://host.docker.internal:8082"
+                    },
+                    {
+                      "name": "SEARCH",
+                      "value": "true"
+                    },
+                    {
+                      "name": "MEILI_NO_ANALYTICS",
+                      "value": "true"
+                    },
+                    {
+                      "name": "MEILI_HOST",
+                      "value": "http://0.0.0.0:8081"
+                    },
+                    {
+                      "name": "MEILI_HTTP_ADDR",
+                      "value": "0.0.0.0:8081"
+                    },
+                    {
+                      "name": "MEILI_MASTER_KEY",
+                      "value": "DrhYf7zENyR6AlUCKmnz0eYASOQdl6zxH7s7MKFSfFCt"
+                    },
+                    {
+                      "name": "JWT_SECRET",
+                      "value": "16f8c0ef4a5d391b26034086c628469d3f9f497f08163ab9b40137092f2909ef"
+                    },
+                    {
+                      "name": "JWT_REFRESH_SECRET",
+                      "value": "eaa5191f2914e30b9387fd84e254e4ba6fc51b4654968a9b0803b456a54b8418"
+                    },
+                    {
+                      "name": "SESSION_EXPIRY",
+                      "value": "750000"
+                    },
+                    {
+                      "name": "REFRESH_TOKEN_EXPIRY",
+                      "value": "604800000"
+                    },
+                    {
+                      "name": "DOMAIN_CLIENT",
+                      "value": "http://localhost:8080"
+                    },
+                    {
+                      "name": "DOMAIN_SERVER",
+                      "value": "http://localhost:8080"
+                    },
+                    {
+                      "name": "EMAIL_FROM",
+                      "value": "yuanchao.ma@databricks.com"
+                    }
+                ]                
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+      ]
+    },
+    "resources": [
+      ]
+  }
